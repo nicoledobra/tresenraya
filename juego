@@ -1,0 +1,67 @@
+def drawBoard(l,n):
+if len (l)!=9:
+print "Error! Board badly designed!"
+else:
+print "Turn number :",n
+print "="*12
+print " "*3+"|"+" "*3+"|"+" "*3
+print " "+ l[6] +" " +"|"+" " + l[7]+ " "+ "|"+ " "+l[8]+ " "
+print " "*3+"|"+" "*3+"|"+" "*3
+print "-"*12 
+print " "*3+"|"+" "*3+"|"+" "*3
+print " "+ l[3] +" " +"|"+" " + l[4]+ " "+ "|"+ " "+l[5]+ " "
+print " "*3+"|"+" "*3+"|"+" "*3
+print "-"*12 
+print " "*3+"|"+" "*3+"|"+" "*3
+print " "+ l[0] +" " +"|"+" " + l[1]+ " "+ "|"+ " "+l[2]+ " "
+print " "*3+"|"+" "*3+"|"+" "*3
+print "="*12
+drawBoard([" ", " ", " ", " ", " ", " ", " ", " ", " "], 10)
+
+def chooseInitialPlayer():
+    import random
+    lista = ['Python', 'Computer']
+    print(random.choice(lista))
+chooseInitialPlayer()
+
+def isAFreeSpace(l, n):
+    if len (l)==9 and n==00:
+        print True
+    else:
+        print False
+isAFreeSpace(["X", " ", " ", " ", " ", " ", " ", " ", " "], 0)
+
+def fullBoard(l):
+    m=' ';
+    if len(l)==9 and m in l:
+            return False
+    return True
+print fullBoard(['X', 'X', ' ', 'X', 'X', 'X', 'X', 'X', 'X'])
+
+def applyPlay(jud, l, lletra, n):
+    print jud, "occupies position", n
+    l[n]=lletra
+    return l
+print applyPlay("Computer", [" ", "X", " ", " ", "X", " ", " ", "X", " "], "O", 7)
+
+def isAWonPlay(l, lletra):
+    lletra=="X"
+    if lletra==l[0] and lletra==l[3] and lletra==l[6]:
+        print True
+    elif l[0]==lletra and l[4]==lletra and l[8] ==lletra:
+        print True
+    elif l[0]==lletra and l[1]==lletra and l[2] ==lletra:
+        print True
+    elif l[1]==lletra and l[4]==lletra and l[7] ==lletra:
+        print True
+    elif l[2]==lletra and l[6]==lletra and l[8] ==lletra:
+        print True
+    elif l[2]==lletra and l[4]==lletra and l[6] ==lletra:
+        print True
+    else:
+        print False 
+    n=0
+    if len(l)!=9 and n<9:
+        return l
+isAWonPlay([" ", "X", " ", " ", "X", " ", " ", "X", " "], "O")
+
