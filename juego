@@ -1,5 +1,18 @@
-import random
+def menu():
+    print "Menu"
+    print "1. Play game"
+    print "2. History of games"
+    print "3. Exit"
+    pos = raw_input("Choose option:")
+    while not(int(pos)>=1 and int(pos)<=3):
+        print "Opcio incorrecta"
+        pos = raw_input("Choose option:")
+    print ("Choose option:"),pos
+    return pos
+    
+print menu()
 
+import random
 def randomPlay(l):
     i=0
     t=[]
@@ -18,8 +31,6 @@ def startBoard():
     s=s*9
     return s
     
-
-
 def drawBoard(l,n):
     if len (l)!=9:
         print "Error! Board badly designed!"
@@ -123,9 +134,18 @@ def playAgain():
         return True
     else:
         return False
+def statistics(wg, lg, tg):
+    suma=wg+lg+tg
+    print "Statistics"
+    print "- Number of games played:",suma
+    print "- Number of games won:",wg
+    print "- Number of games lost:",lg
+    print "- Number of tied games:",tg
+statistics(5,8,10)
 
 
 def game():
+    
     i=startBoard()
     t=chooseLetterPlayer()
     player=chooseInitialPlayer()
@@ -135,6 +155,8 @@ def game():
     else:
         letra=t[0]
     drawBoard(i, turno)
+    menu()
+    statistics(wg, lg, tg)
     while not isAWonPlay(i, letra) and not fullBoard(i):
         if player=="Player":
             jugada=play(i)
@@ -142,25 +164,32 @@ def game():
             drawBoard(i, turno)
             if isAWonPlay(i, letra):
                 print "You are the winner"
+                wg=wg+1
             elif fullBoard(i):
                 print "Empate"
+                tg=tg+1
             else:
                 player="Computer"
                 letra=t[1]
                 turno=turno+1
+                lg=lg+1
         else:
             jugada=randomPlay(i)
             i=applyPlay(player, i, letra, jugada)
             drawBoard(i, turno)
             if isAWonPlay(i, letra):
                 print "Computer are the winer"
+                lg=lg+1
             elif fullBoard(i):
                 print "Empate"
+                tg=tg+1
             else:
                 player="Player"
                 letra=t[0]
                 turno=turno+1
+                wg=wg+1
 game()
+
                 
             
          
