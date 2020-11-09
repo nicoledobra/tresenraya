@@ -7,10 +7,9 @@ def menu():
     while not(int(pos)>=1 and int(pos)<=3):
         print "Opcio incorrecta"
         pos = raw_input("Choose option:")
-    print ("Choose option:"),pos
     return pos
     
-print menu()
+
 
 import random
 def randomPlay(l):
@@ -141,7 +140,7 @@ def statistics(wg, lg, tg):
     print "- Number of games won:",wg
     print "- Number of games lost:",lg
     print "- Number of tied games:",tg
-statistics(5,8,10)
+
 
 
 def game():
@@ -155,41 +154,55 @@ def game():
     else:
         letra=t[0]
     drawBoard(i, turno)
-    menu()
-    statistics(wg, lg, tg)
+   
     while not isAWonPlay(i, letra) and not fullBoard(i):
         if player=="Player":
             jugada=play(i)
             i=applyPlay(player, i, letra, jugada)
             drawBoard(i, turno)
             if isAWonPlay(i, letra):
-                print "You are the winner"
-                wg=wg+1
+                print "Eres el ganador"
+                return 1
             elif fullBoard(i):
                 print "Empate"
-                tg=tg+1
+                return 0
             else:
                 player="Computer"
                 letra=t[1]
                 turno=turno+1
-                lg=lg+1
+                
         else:
             jugada=randomPlay(i)
             i=applyPlay(player, i, letra, jugada)
             drawBoard(i, turno)
             if isAWonPlay(i, letra):
-                print "Computer are the winer"
-                lg=lg+1
+                print "La Computadora gano"
+                return 2
             elif fullBoard(i):
                 print "Empate"
-                tg=tg+1
+                return 0
             else:
                 player="Player"
                 letra=t[0]
                 turno=turno+1
-                wg=wg+1
-game()
-
                 
-            
-         
+print "Este es el juego de 3 en raya"
+wg=0
+lg=0
+tg=0
+op = int(menu())
+while op!=3:
+  if op==1:
+    g=game()
+    if g==1:
+      wg+=1
+    elif g==2:
+      lg+=1
+    else:
+      tg+=1
+  elif op==2:
+    statistics(wg,lg,tg)
+  else:
+    print "Opcion incorrecta!"
+  op = int(menu())
+print "Gracias por jugar"
